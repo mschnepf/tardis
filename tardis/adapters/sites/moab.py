@@ -63,11 +63,18 @@ class MoabAdapter(SiteAdapter):
 
         translator_functions = StaticMapping(
             State=lambda x, translator=StaticMapping(
+                Deferred=ResourceStatus.Booting,
+                Hold=ResourceStatus.Stopped,
                 Idle=ResourceStatus.Booting,
+                Migrated=ResourceStatus.Booting,
+                Staged=ResourceStatus.Booting,
+                Starting=ResourceStatus.Booting,
                 Running=ResourceStatus.Running,
-                Completed=ResourceStatus.Deleted,
+                Suspended=ResourceStatus.Stopped,
                 Canceling=ResourceStatus.Running,
-                Vacated=ResourceStatus.Stopped,
+                Completed=ResourceStatus.Deleted,
+                Removed=ResourceStatus.Deleted,
+                Vacated=ResourceStatus.Deleted,
             ): translator[x],
             JobID=lambda x: int(x),
         )
